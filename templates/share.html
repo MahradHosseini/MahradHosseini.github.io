@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Share Item</title>
+    <style>
+        .center {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 800px;
+            background: #fff7;
+            border-radius: 15px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .checkbox-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .checkbox-container label {
+            margin-bottom: 5px;
+        }
+        .btn {
+            background-color: #28a745; /* Green */
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h2>Share {{ type }} with Friends</h2>
+        <form action="/share/{{ type }}/{{ temp[0] }}" method="post">
+            <div class="checkbox-container">
+                {% for friend in friends %}
+                    <label>
+                        <input type="checkbox" name="friends" value="{{ friend['userID'] }}">
+                        {{ friend['name'] }} {{ friend['surname'] }} ({{ friend['email'] }})
+                    </label>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn">Share</button>
+        </form>
+    </div>
+</body>
+</html>
